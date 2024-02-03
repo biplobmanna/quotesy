@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static%}
+
+{% block main %}
+<div class="flex justify-center">
+  <div class="shadow-lg flex flex-col h-screen justify-between min-w-2xl max-w-2xl p-4">
+    <main class="mb-auto overflow-auto">
+      <h1 class="text-xl font-bold text-gray-600 mb-4">Quotes</h1>
+      <div id="quotes-div" class="text-gray-600 font-medium" hx-get={% url "api_quotes" %} hx-trigger="load">
+      </div>
+    </main>
+    <footer class="p-4 border-2 border-gray-100 shadow-lg rounded-lg">  
+      <form 
+        hx-post={% url "api_quotes" %}
+        hx-target="#quotes-div"
+        hx-swap="afterbegin"
+        hx-on::after-request="this.reset()"
+      >
+        <label for="quote-input" class="block mb-2 text-md font-bold text-gray-600">Add Quote</label>
+        <textarea id="quote-input" name="quote-input" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Writing a good quote begins with a word..." required></textarea>
+
+        <label for="author-input" class="block my-2 text-sm font-medium text-gray-900">Author</label>
+        <input type="text" id="author-input" name="author-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="The Universe" required>
+        
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm mt-4 px-5 py-2.5 text-center w-32">Submit</button>
+      </form>
+    </footer>
+  </div>
+</div>
+{% endblock %}

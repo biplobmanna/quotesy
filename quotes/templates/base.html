@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Quotesy Totesy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src={% static 'packages/htmx.min.js' %}></script>
+    <script src={% static 'packages/tailwind.3.4.1.1.js' %}></script>
+    <link rel="icon" href={% static "icons/logo.svg" %}
+  </head>
+  <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    {% block main %}
+    {% endblock %}
+  </body>
+</html>
