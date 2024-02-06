@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models import functions
 
 # Create your models here.
 
@@ -14,7 +13,7 @@ class Quote(models.Model):
         return f"{self.quote} -- {self.author}"
 
     def __str__(self):
-        return self.quote
+        return str(self.quote)
 
     class Meta:
         ordering = ["-updated_at", "author"]
