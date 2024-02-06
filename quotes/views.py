@@ -12,7 +12,7 @@ def home(request):
     return render(request, "home.html")
 
 class QuotesView(View):
-    queryset = Quote.objects 
+    queryset = Quote.objects
 
     def get(self, request, *args, **kwargs):
         _id = request.GET.get('quote_id')
